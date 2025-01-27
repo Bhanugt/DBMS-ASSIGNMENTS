@@ -1,0 +1,170 @@
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| employee           |
+| information_schema |
+| mysql              |
+| omega              |
+| performance_schema |
+| school             |
+| student_info_db    |
+| student_info_id    |
+| student_records    |
+| sys                |
+| university         |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use student_info_db;
+Database changed
+mysql> CREATE TABLE student_details(
+    -> ID int(6) PRIMARY KEY,
+    -> Name varchar(8),
+    -> Mobile int(10));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)+
+mysql> ALTER TABLE student_details ADD Email char(30);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student_details;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
+| Email  | char(30)   | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> ALTER TABLE student_details MODIFY Email char(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student_details;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
+| Email  | char(30)   | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql> ALTER TABLE student_details RENAME COLUMN Email to Email_Address;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Describe student_details;
++---------------+------------+------+-----+---------+-------+
+| Field         | Type       | Null | Key | Default | Extra |
++---------------+------------+------+-----+---------+-------+
+| ID            | int        | NO   | PRI | NULL    |       |
+| Name          | varchar(8) | YES  |     | NULL    |       |
+| Mobile        | int        | YES  |     | NULL    |       |
+| Email_Address | char(30)   | YES  |     | NULL    |       |
++---------------+------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student_details DROP COLUMN Email_Address;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student_details;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> RENAME TABLE student_details to student_info;
+Query OK, 0 rows affected (0.02 sec)
+mysql> describe student_info;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE delete_me(ID int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DROP TABLE delete_me;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe student_values;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE delete_me(ID int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe student_info;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| ID     | int        | NO   | PRI | NULL    |       |
+| Name   | varchar(8) | YES  |     | NULL    |       |
+| Mobile | int        | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO student_information(ID, name, mobile) values (1, 'ram',9786532145);
+ERROR 1054 (42S22): Unknown column 'mobile' in 'field list'
+mysql> INSERT INTO student_information(ID, name) values (1, 'ram');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO student_information(ID, name) values (2, 'ayushi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> describe student_information;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| ID    | int        | YES  |     | NULL    |       |
+| name  | varchar(8) | YES  |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student_information;
++------+--------+
+| ID   | name   |
++------+--------+
+|    1 | ram    |
+|    2 | ayushi |
++------+--------+
+2 rows in set (0.01 sec)
+
+mysql> TRUNCATE TABLE student_information;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe student_information;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| ID    | int        | YES  |     | NULL    |       |
+| name  | varchar(8) | YES  |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select*from student_information;
+Empty set (0.00 sec)
+
+mysql>
