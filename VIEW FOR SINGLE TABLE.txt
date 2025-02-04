@@ -1,0 +1,104 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.40 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database student_record_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++------------------------+
+| Database               |
++------------------------+
+| college                |
+| employee               |
+| information_schema     |
+| mysql                  |
+| omega                  |
+| performance_schema     |
+| school                 |
+| student_deatails       |
+| student_details        |
+| student_info_db        |
+| student_info_id        |
+| student_information_db |
+| student_record_db      |
+| student_records        |
+| sys                    |
+| university             |
++------------------------+
+16 rows in set (0.00 sec)
+
+mysql> use student_record_db;
+Database changed
+mysql> create table student_info;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table student_info(ID int(5), Name char(7), Address char(12));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> insert into student_info(id, name, address)
+    -> values (1, 'BHANU', 'HYDERABAD');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student_info(ID, Name, Address)
+    -> values (1, 'SREEJA', 'HYDERABAD'),
+    -> (2, 'AYUSHI', 'CHENNAI'),
+    -> (3, 'SRESTA', 'BANGALORE'),
+    -> (4, 'AKASH', 'MUMBAI'),
+    -> (5, 'ROHAN', 'KARNATAKA');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENT_INFO;
++------+--------+-----------+
+| ID   | Name   | Address   |
++------+--------+-----------+
+|    1 | BHANU  | HYDERABAD |
+|    1 | SREEJA | HYDERABAD |
+|    2 | AYUSHI | CHENNAI   |
+|    3 | SRESTA | BANGALORE |
+|    4 | AKASH  | MUMBAI    |
+|    5 | ROHAN  | KARNATAKA |
++------+--------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE VIEW STUDENT_BASIC_DETAILS AS
+    -> SELECT ID, NAME, ADDRESS
+    -> FROM STUDENT_INFO
+    -> WHERE ID < 5;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM STUDENT_INFO;
++------+--------+-----------+
+| ID   | Name   | Address   |
++------+--------+-----------+
+|    1 | BHANU  | HYDERABAD |
+|    1 | SREEJA | HYDERABAD |
+|    2 | AYUSHI | CHENNAI   |
+|    3 | SRESTA | BANGALORE |
+|    4 | AKASH  | MUMBAI    |
+|    5 | ROHAN  | KARNATAKA |
++------+--------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT_BASIC_DETAILS;
++------+--------+-----------+
+| ID   | NAME   | ADDRESS   |
++------+--------+-----------+
+|    1 | BHANU  | HYDERABAD |
+|    1 | SREEJA | HYDERABAD |
+|    2 | AYUSHI | CHENNAI   |
+|    3 | SRESTA | BANGALORE |
+|    4 | AKASH  | MUMBAI    |
++------+--------+-----------+
+5 rows in set (0.01 sec)
+
+mysql>
